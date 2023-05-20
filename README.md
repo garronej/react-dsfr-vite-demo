@@ -1,8 +1,8 @@
 Run the App:  
 
 ```bash
-git clone https://github.com/codegouvfr/react-dsfr
-cd react-dsfr
+git clone https://github.com/garronej/react-dsfr-vite-demo
+cd react-dsfr-vite-demo
 yarn
-yarn start-vite
+yarn dev
 ```
