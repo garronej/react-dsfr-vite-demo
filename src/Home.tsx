@@ -11,6 +11,7 @@ import { useState } from "react";
 import { Table } from "@codegouvfr/react-dsfr/Table";
 import { useGdprStore } from "@codegouvfr/react-dsfr/useGdprStore"
 import { consentModalNativeButtonProps } from '@codegouvfr/react-dsfr/ConsentBanner';
+import { MyComponent } from "./MyComponent";
 
 export function Home() {
     const { isDark, setIsDark } = useIsDark();
@@ -66,128 +67,12 @@ export function Home() {
 
                 />
             </div>
-            <Form />
             <TableExample />
             <GdprStoreViewer />
-
+            <MyComponent />
         </>
     );
 }
-
-const { Form } = (() => {
-
-
-
-    function Form() {
-
-
-        return (
-            <form action="#" onSubmit={(event) => {
-                event.preventDefault();
-                alert("Submitted form with data " + JSON.stringify(Object.fromEntries(new FormData(event.target as HTMLFormElement).entries()), null, 2))
-            }}>
-                <Input label="Firstname" nativeInputProps={{
-                    name: "firstname",
-                }} />
-                <Input label="Lastname" nativeInputProps={{
-                    name: "lastname",
-                }} />
-                <SelectDogOrCat />
-                <SelectMeal />
-                <Button>Submit</Button>
-            </form>
-        );
-
-    }
-
-    const { SelectDogOrCat } = (() => {
-
-        const dogOrCatOptions = [
-            {
-                value: "dog",
-                label: "Dog",
-            },
-            {
-                value: "cat",
-                label: "Cat",
-            },
-        ] as const;
-
-        function SelectDogOrCat() {
-
-            return (
-                <Select label="Dog or cat person?"
-                    options={[...dogOrCatOptions]}
-                    placeholder="Select an option"
-                    nativeSelectProps={{
-                        name: "dog-or-cat",
-                    }}
-                />
-            );
-
-        }
-
-        return { SelectDogOrCat }
-
-    })();
-
-    const { SelectMeal } = (() => {
-
-        const meals = ["pizza", "fruit-salad", "raclette"] as const;
-
-        type Meal = (typeof meals)[number];
-
-        function SelectMeal() {
-
-            const [favoriteMeal, setFavoriteMeal] = useState<Meal | undefined>(undefined);
-
-            return (
-                <>
-                    <Select 
-                        label="Favorite meal?"
-                        options={meals.map(value => ({
-                            value,
-                            "label": (() => {
-                                switch (value) {
-                                    case "fruit-salad": return "Fruit salad";
-                                    case "pizza": return "Pizza";
-                                    case "raclette": return "Raclette";
-                                }
-                            })()
-
-                        }))}
-                        nativeSelectProps={{
-                            "value": favoriteMeal,
-                            "onChange": event => {
-                                // ❤️ no "as Meal" needed here!
-                                setFavoriteMeal(event.currentTarget.value);
-
-                                // This next line will throw a type error
-                                // setFavoriteMeal("not a meal");
-                            }
-                        }}
-                    />
-                    {
-                        favoriteMeal !== undefined &&
-                        <div className={fr.cx("fr-hint-text", "fr-mb-4w")}>Is {favoriteMeal} really your favorite meal?</div>
-                    }
-                </>
-            );
-        }
-
-        return { SelectMeal };
-
-
-    })();
-
-    return { Form };
-
-
-})();
-
-
-
-
 
 function TableExample() {
     return (

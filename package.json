@@ -13,7 +13,7 @@
         "prebuild": "yarn copy-dsfr-to-public && yarn only-include-used-icons"
     },
     "dependencies": {
-        "@codegouvfr/react-dsfr": "0.54.10-rc.2",
+        "@codegouvfr/react-dsfr": "^0.57.4",
         "@emotion/react": "^11.11.0",
         "@emotion/styled": "^11.11.0",
         "@mui/icons-material": "^5.10.16",
@@ -23,7 +23,8 @@
         "dayjs": "^1.11.6",
         "react": "18.2.0",
         "react-dom": "18.2.0",
-        "react-router-dom": "^6.8.1"
+        "react-router-dom": "^6.8.1",
+        "tss-react": "^4.8.5"
     },
     "devDependencies": {
         "@types/react": "18.0.21",
