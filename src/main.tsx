@@ -11,6 +11,7 @@ import { Display, headerFooterDisplayItem } from "@codegouvfr/react-dsfr/Display
 import { fr } from "@codegouvfr/react-dsfr";
 import { GdprStoreProvider } from "@codegouvfr/react-dsfr/gdpr";
 import { ConsentBanner } from '@codegouvfr/react-dsfr/ConsentBanner';
+import { GlobalStyles } from "tss-react";
 
 startReactDsfr({ "defaultColorScheme": "system", Link });
 
@@ -21,7 +22,7 @@ declare module "@codegouvfr/react-dsfr/spa" {
 }
 
 declare module "@codegouvfr/react-dsfr/gdpr" {
-    interface RegisterGdprServices { 
+    interface RegisterGdprServices {
         matomo: never;
     }
 }
@@ -36,79 +37,90 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 
 const brandTop = <>INTITULE<br />OFFICIEL</>;
 
-const homeLinkProps= { "to": "/", "title": "Accueil - Nom de l’entité (ministère, secrétariat d‘état, gouvernement)" };
+const homeLinkProps = { "to": "/", "title": "Accueil - Nom de l’entité (ministère, secrétariat d‘état, gouvernement)" };
 
 function Root() {
 
     const location = useLocation();
 
     return (
-        <GdprStoreProvider>
-            <ConsentBanner gdprLinkProps={{to: "/mui"}} siteName='Next Test App' services={[
-                {
-                    name: "matomo",
-                    title: "Matomo",
-                    description: "User tracking",
-                }
-            ]} />
-            <div style={{ "height": "100vh", "display": "flex", "flexDirection": "column" }}>
-                <Header
-                    brandTop={brandTop}
-                    serviceTitle="Nom du site / service"
-                    homeLinkProps={homeLinkProps}
-                    quickAccessItems={[headerFooterDisplayItem]}
-                    navigation={[
-                        {
-                            "text": "Home",
-                            "linkProps": {
-                                "to": "/"
+        <>
+            <GlobalStyles
+                styles={{
+                    "html": {
+                        //NOTE: Always show scrollbar to avoid layout shift when modals are opened
+                        "overflow": "-moz-scrollbars-vertical",
+                        "overflowY": "scroll"
+                    }
+                }}
+            />
+            <GdprStoreProvider>
+                <ConsentBanner gdprLinkProps={{ to: "/mui" }} siteName='Next Test App' services={[
+                    {
+                        name: "matomo",
+                        title: "Matomo",
+                        description: "User tracking",
+                    }
+                ]} />
+                <div style={{ "height": "100vh", "display": "flex", "flexDirection": "column" }}>
+                    <Header
+                        brandTop={brandTop}
+                        serviceTitle="Nom du site / service"
+                        homeLinkProps={homeLinkProps}
+                        quickAccessItems={[headerFooterDisplayItem]}
+                        navigation={[
+                            {
+                                "text": "Home",
+                                "linkProps": {
+                                    "to": "/"
+                                },
+                                "isActive": location.pathname === "/"
                             },
-                            "isActive": location.pathname === "/"
-                        },
-                        {
-                            "text": "Mui playground",
-                            "linkProps": {
-                                "to": "/mui"
+                            {
+                                "text": "Mui playground",
+                                "linkProps": {
+                                    "to": "/mui"
+                                },
+                                "isActive": location.pathname === "/mui"
                             },
-                            "isActive": location.pathname === "/mui"
-                        },
-                        {
-                            "text": "External link",
-                            "linkProps": {
-                                "to": "https://example.fr"
-                            },
-                            "isActive": false
-                        }
-                    ]}
-                />
-                <div style={{
-                    "flex": 1,
-                    "margin": "auto",
-                    "maxWidth": 1000,
-                    ...fr.spacing("padding", { "topBottom": "10v" })
-                }}>
-                    <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/mui" element={<Mui />} />
-                        <Route path="*" element={<h1>404</h1>} />
-                    </Routes>
-                </div>
-                <Footer
-                    brandTop={brandTop}
-                    accessibility="fully compliant"
-                    contentDescription={`
+                            {
+                                "text": "External link",
+                                "linkProps": {
+                                    "to": "https://example.fr"
+                                },
+                                "isActive": false
+                            }
+                        ]}
+                    />
+                    <div style={{
+                        "flex": 1,
+                        "margin": "auto",
+                        "maxWidth": 1000,
+                        ...fr.spacing("padding", { "topBottom": "10v" })
+                    }}>
+                        <Routes>
+                            <Route path="/" element={<Home />} />
+                            <Route path="/mui" element={<Mui />} />
+                            <Route path="*" element={<h1>404</h1>} />
+                        </Routes>
+                    </div>
+                    <Footer
+                        brandTop={brandTop}
+                        accessibility="fully compliant"
+                        contentDescription={`
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
                         incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
                         quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
                         Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore 
                         eu fugiat nulla pariatur. 
                     `}
-                    homeLinkProps={homeLinkProps}
-                    bottomItems={[headerFooterDisplayItem]}
-                />
-                <Display />
-            </div>
-    </GdprStoreProvider>
+                        homeLinkProps={homeLinkProps}
+                        bottomItems={[headerFooterDisplayItem]}
+                    />
+                    <Display />
+                </div>
+            </GdprStoreProvider>
+        </>
     );
 
 }
