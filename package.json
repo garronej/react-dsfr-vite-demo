@@ -7,10 +7,9 @@
         "dev": "vite",
         "build": "tsc && vite build",
         "preview": "vite preview",
-        "copy-dsfr-to-public": "node node_modules/@codegouvfr/react-dsfr/bin/copy-dsfr-to-public.js",
-        "only-include-used-icons": "node node_modules/@codegouvfr/react-dsfr/bin/only-include-used-icons.js",
-        "predev": "yarn copy-dsfr-to-public && yarn only-include-used-icons",
-        "prebuild": "yarn copy-dsfr-to-public && yarn only-include-used-icons"
+        "postinstall": "copy-dsfr-to-public",
+        "predev": "only-include-used-icons",
+        "prebuild": "only-include-used-icons"
     },
     "dependencies": {
         "@codegouvfr/react-dsfr": "^0.60.0",
