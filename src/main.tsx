@@ -9,6 +9,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Routes, Route, Link, useLocation } from "react-router-dom";
 import { headerFooterDisplayItem } from "@codegouvfr/react-dsfr/Display";
 import { fr } from "@codegouvfr/react-dsfr";
+import { GlobalStyles } from "tss-react";
 
 startReactDsfr({ "defaultColorScheme": "system", Link });
 
@@ -31,6 +32,14 @@ function Root() {
     const location = useLocation();
 
     return (
+        <>
+        <GlobalStyles
+            styles={{ 
+                "html": {
+                    "scrollBehavior": "smooth"
+                }
+            }}
+        />
         <div style={{ "minHeight": "100vh", "display": "flex", "flexDirection": "column" }}>
             <Header
                 brandTop={<>INTITULE<br />OFFICIEL</>}
@@ -61,6 +70,13 @@ function Root() {
                             "to": "https://example.fr"
                         },
                         "isActive": false
+                    },
+                    {
+                        "text": "Anchor link",
+                        "linkProps": {
+                            "to": "#target"
+                        },
+                        "isActive": false
                     }
                 ]}
             />
@@ -88,6 +104,7 @@ function Root() {
                 bottomItems={[headerFooterDisplayItem]}
             />
         </div>
+        </>
     );
 
 }

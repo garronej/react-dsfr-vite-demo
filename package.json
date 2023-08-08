@@ -12,12 +12,12 @@
         "prebuild": "only-include-used-icons"
     },
     "dependencies": {
-        "@codegouvfr/react-dsfr": "^0.73.0",
-        "@emotion/react": "^11.11.0",
+        "@codegouvfr/react-dsfr": "^0.73.5",
+        "@emotion/react": "^11.11.1",
         "@emotion/styled": "^11.11.0",
         "@mui/icons-material": "^5.11.16",
-        "@mui/material": "^5.13.3",
-        "@mui/system": "^5.13.2",
+        "@mui/material": "^5.14.4",
+        "@mui/system": "^5.14.4",
         "@mui/x-date-pickers": "^5.0.9",
         "dayjs": "^1.11.6",
         "react": "18.2.0",

@@ -63,6 +63,9 @@ export function Home() {
             </div>
             <TableExample />
             <MyComponent />
+            <div id="target">
+                <p>This is the target of a header menu entry</p>
+            </div>
         </>
     );
 }
