@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { makeStyles } from "tss-react/dsfr";
+import { tss } from "tss-react/dsfr";
 import { fr } from "@codegouvfr/react-dsfr";
 
 export type Props = {
@@ -28,13 +28,13 @@ export function MyComponent(props: Props) {
 
 }
 
-const useStyles = makeStyles<{ isBigger: boolean; }>()((theme, { isBigger }) => ({
+const useStyles = tss.withParams<{ isBigger: boolean; }>().create(({ isBigger }) => ({
 	root: {
 		width: 100,
 		height: isBigger? 500 : 100,
-		backgroundColor: theme.decisions.background.active.redMarianne.default,
+		backgroundColor: fr.colors.decisions.background.active.redMarianne.default,
 		"&:hover": {
-			backgroundColor: theme.decisions.background.active.redMarianne.hover,
+			backgroundColor: fr.colors.decisions.background.active.redMarianne.hover,
 		},
 		[fr.breakpoints.down("md")]: {
 			border: "2px solid pink"
