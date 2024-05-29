@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { tss } from "tss-react/dsfr";
+import { tss } from "tss-react";
 import { fr } from "@codegouvfr/react-dsfr";
 
 export type Props = {
