@@ -7,12 +7,11 @@
         "dev": "vite",
         "build": "tsc && vite build",
         "preview": "vite preview",
-        "postinstall": "react-dsfr copy-to-public",
-        "predev": "react-dsfr include-used-icons",
-        "prebuild": "react-dsfr include-used-icons"
+        "predev": "react-dsfr update-icons",
+        "prebuild": "react-dsfr update-icons"
     },
     "dependencies": {
-        "@codegouvfr/react-dsfr": "^1.10.2",
+        "@codegouvfr/react-dsfr": "^1.10.7",
         "@emotion/react": "^11.11.1",
         "@emotion/styled": "^11.11.0",
         "@mui/icons-material": "^5.14.18",
