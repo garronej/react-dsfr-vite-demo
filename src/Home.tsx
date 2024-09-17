@@ -1,89 +1,58 @@
-import { Alert } from "@codegouvfr/react-dsfr/Alert";
 import { Button } from "@codegouvfr/react-dsfr/Button";
-import { ButtonsGroup } from "@codegouvfr/react-dsfr/ButtonsGroup";
+import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
+import { useForm , type SubmitHandler} from "react-hook-form";
 
-import { fr } from "@codegouvfr/react-dsfr";
-import { useIsDark } from "@codegouvfr/react-dsfr/useIsDark";
-import { Table } from "@codegouvfr/react-dsfr/Table";
-import { MyComponent } from "./MyComponent";
+type RadioForm = { "my-radio": "one" | "two" | "three"};
+
 
 export function Home() {
-    const { isDark, setIsDark } = useIsDark();
+
+    const { register, handleSubmit, formState: { errors } } = useForm<RadioForm>({ defaultValues: {
+        "my-radio": "two", // Set default value to "two"
+      }
+    });
+
+    const onSubmit: SubmitHandler<RadioForm> = (data) => {
+        console.log(data);
+    };
+
     return (
-        <>
+        <form onSubmit={handleSubmit(onSubmit)}>
+            <RadioButtons
+                legend="Label"
+                options={[
+                {
+                    label: "Label radio",
+                    nativeInputProps: {
+                    value: "one",
+                    ...register("my-radio"),
 
-            <div className={fr.cx("fr-my-4w")}>
-                <Alert
-                    closable
-                    severity="success"
-                    title="Success: This is the title"
-                    description="This is the description"
-                />
-            </div>
-            <div className={fr.cx("fr-my-4w")}>
-                <span className={fr.cx("fr-icon-ancient-gate-fill")} aria-hidden="true"></span>
-                <i className={fr.cx("fr-icon-ancient-gate-fill")} aria-hidden="true" />
-            </div>
+                    },
+                },
+                {
+                    label: "Label radio 2",
+                    nativeInputProps: {
+                    value: "two",
+                    ...register("my-radio"),
 
-            <div className={fr.cx("fr-my-4w")}>
-                <Button
-                    type="button"
-                    iconId="ri-24-hours-fill"
-                >
-                    Download
-                </Button>
-            </div>
+                    },
+                },
+                {
+                    label: "Label radio 3",
+                    nativeInputProps: {
+                    value: "three",
+                    ...register("my-radio"),
 
-            <h1>Color Scheme: {isDark ? "dark" : "light"}</h1>
-
-            <div className={fr.cx("fr-my-4w")}>
-                <ButtonsGroup
-                    inlineLayoutWhen="lg and up"
-                    buttons={[
-                        {
-                            children: "Set color scheme to dark",
-                            onClick: () => setIsDark(true),
-                            type: "button",
-                        },
-                        {
-                            children: "Set color scheme to light",
-                            onClick: () => setIsDark(false),
-                            priority: "secondary",
-                            type: "button",
-                        },
-                        {
-                            children: "Set color scheme to system",
-                            onClick: () => setIsDark("system"),
-                            priority: "tertiary",
-                            type: "button",
-                        },
-                    ]}
-
-                />
-            </div>
-            <TableExample />
-            <MyComponent />
-            <div id="target">
-                <p>This is the target of a header menu entry</p>
-            </div>
-        </>
+                },
+                                    },
+                ]}
+            />
+            <Button
+                type="submit"
+                iconId="ri-24-hours-fill"
+            >
+                Submit
+            </Button>
+        </form>
     );
 }
-
-function TableExample() {
-    return (
-        <Table
-            caption = "Titre du tableau"
-            colorVariant = "green-emeraude"
-            headers = {["Titre", "Titre", "Titre", "Titre", "Titre"]}
-            data = {[
-                ["Donnée", "Donnée", "Donnée", "Donnée", "Donnée"],
-                ["Donnée", "Donnée", "Donnée", "Donnée", "Donnée"],
-                ["Donnée", "Donnée", "Donnée", "Donnée", "Donnée"],
-                ["Donnée", "Donnée", "Donnée", "Donnée", "Donnée"],
-                ["Donnée", "Donnée", "Donnée", "Donnée", "Donnée"]
-            ]}
-        />
-    );
-}
-
