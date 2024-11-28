@@ -11,24 +11,24 @@
         "prebuild": "react-dsfr update-icons"
     },
     "dependencies": {
-        "@codegouvfr/react-dsfr": "^1.11.5",
-        "@emotion/react": "^11.13.3",
-        "@emotion/styled": "^11.13.0",
-        "@mui/icons-material": "^6.0.2",
-        "@mui/material": "^6.0.2",
-        "@mui/system": "^6.0.2",
-        "@mui/x-date-pickers": "^6.18.2",
+        "@codegouvfr/react-dsfr": "^1.14.10",
+        "@emotion/react": "^11.13.5",
+        "@emotion/styled": "^11.13.5",
+        "@mui/icons-material": "^6.1.9",
+        "@mui/material": "^6.1.9",
+        "@mui/system": "^6.1.9",
+        "@mui/x-date-pickers": "^7.22.3",
         "dayjs": "^1.11.6",
-        "react": "18.2.0",
-        "react-dom": "18.2.0",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
         "react-router-dom": "^6.8.1",
         "tss-react": "^4.9.13"
     },
     "devDependencies": {
-        "@types/react": "18.0.21",
-        "@types/react-dom": "18.0.6",
-        "@vitejs/plugin-react": "^4.3.1",
-        "typescript": "^5.5.4",
-        "vite": "^5.4.3"
+        "@types/react": "^18.3.12",
+        "@types/react-dom": "^18.3.1",
+        "@vitejs/plugin-react": "^4.3.4",
+        "typescript": "^5.7.2",
+        "vite": "^6.0.1"
     }
 }
